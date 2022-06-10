@@ -8,12 +8,15 @@ module.exports = class ApiError extends Error{ //этот класс расши�
         this.errors = errors;
     }
 
-    static UnauthorizedError(){ //static function, это функции которые можно использовать несоздавая экземпляр класса 
+    static UnauthorizedError(){ //static function, это функции которые можно вызывать без создания обьекте, тоесть можно вызывать через класс
         return new ApiError(401, 'Пользователь не авторизован')
     }
 
     static BadRequest(message, errors=[]){
-        return new ApiError(401, message, errors);
+        return new ApiError(400, message, errors);
     }
- 
+    
+    static forbidden(message){
+        return new ApiError(403, message);
+    }
 }
